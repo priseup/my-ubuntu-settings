@@ -1,0 +1,78 @@
+===============================================================================
+sudo apt install -y build-essential vim vim-gnome gdb git gitk cmake wget tmux fcitx ubuntu-restricted-extras
+
+===============================================================================
+Ubuntu 系统默认安装好是使用的一个开源的驱动：nouveau，我们要安装官方的驱动需要先禁用这个开源驱动，方法如下，依次执行：
+sudo bash -c "echo blacklist nouveau > /etc/modprobe.d/blacklist-nvidia-nouveau.conf"
+sudo bash -c "echo options nouveau modeset=0 >> /etc/modprobe.d/blacklist-nvidia-nouveau.conf"
+
+执行完上面两条指令后，我们使用如下命令看看是否成功禁用了开源驱动：
+cat /etc/modprobe.d/blacklist-nvidia-nouveau.conf
+
+如果和下面一样，表示成功了。
+blacklist nouveau
+options nouveau modeset=0
+
+这个时候我们需要先重启一下系统，重启吧。
+sudo ./NVIDIA* -no-check -no-opengl-files
+nvidia-smi 
+
+===============================================================================
+ubuntu软件备份及重新安装方法
+Save the currently installed packages list
+dpkg --get-selections > installed.files
+
+copy of your apt's list of trusted keys
+sudo apt-key exportall > repositories.keys
+
+restore the backed-up keys
+sudo apt-key add repositories.keys
+
+1. first method: Restore the packages
+sudo dpkg --clear-selections
+sudo dpkg --set-selections installed.files && sudo apt-get dselect-upgrade -y
+
+2. second method: Restore the packages
+sudo apt-get update
+sudo apt-get install dselect
+sudo dselect update
+sudo dpkg --set-selections < installed.files
+sudo apt-get dselect-upgrade -y
+
+===============================================================================
+git checkout -b local origin/remote
+git branch -d branch_name
+git push origin HEAD:refs/for/branch
+git reset --hard --soft --mixed-->default
+git push --set-upstream origin branch
+git rebase -i // merge commit
+git commit --amend // modify the commit message
+
+===============================================================================
+删除所有已停止的容器 docker rm $(docker ps -a -q)
+删除所有镜像 docker rmi $(docker images -q)
+强制删除所有镜像 docker rmi -f $(docker images -q)
+docker run -it --name container_name -v local_dir:docker_dir image_name /bin/bash
+docker start -ai container_name
+docker exec -it container_name /bin/bash
+
+===============================================================================
+apt-cache search package-name | grep speci-package-name
+
+===============================================================================
+vim
+    TAB替换为空格：
+    :set ts=4
+    :set expandtab
+    :%retab!
+
+     
+
+    空格替换为TAB：
+    :set ts=4
+    :set noexpandtab
+    :%retab!
+
+===============================================================================
+zip解压乱码
+unzip -O CP936 xxx.zip (用GBK, GB18030也可以)
