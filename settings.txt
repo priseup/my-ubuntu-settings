@@ -1,5 +1,5 @@
 ===============================================================================
-sudo apt install -y build-essential vim vim-gnome gdb git gitk cmake wget tmux fcitx ubuntu-restricted-extras vlc snap dselect gimp openssh-server
+sudo apt install -y build-essential vim vim-gnome gdb git gitk cmake wget tmux fcitx ubuntu-restricted-extras vlc snap dselect gimp openssh-server sqlitebrowser
 
 sudo snap install cloudcompare meshlab
 
@@ -44,6 +44,8 @@ git reset --hard --soft --mixed-->default
 git push --set-upstream origin branch
 git rebase -i // merge commit
 git commit --amend // modify the commit message
+git init
+git remote add origin git@..
 
 ===============================================================================
 删除所有已停止的容器 docker rm $(docker ps -a -q)
