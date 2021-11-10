@@ -3,6 +3,8 @@ sudo apt install -y build-essential vim vim-gnome gdb git gitk cmake wget tmux f
 
 sudo snap install cloudcompare meshlab
 
+sudo apt install libpcl-dev libeigen3-dev libopencv-dev libopencv-contrib-dev libgdal-dev libboost-all-dev
+
 ===============================================================================
 Ubuntu 系统默认安装好是使用的一个开源的驱动：nouveau，我们要安装官方的驱动需要先禁用这个开源驱动，方法如下，依次执行：
 sudo bash -c "echo blacklist nouveau > /etc/modprobe.d/blacklist-nvidia-nouveau.conf"
@@ -48,12 +50,20 @@ git init
 git remote add origin git@..
 
 ===============================================================================
+ssh config
+
+===============================================================================
 删除所有已停止的容器 docker rm $(docker ps -a -q)
 删除所有镜像 docker rmi $(docker images -q)
 强制删除所有镜像 docker rmi -f $(docker images -q)
 docker run -it --name container_name -v local_dir:docker_dir image_name /bin/bash
 docker start -ai container_name
 docker exec -it container_name /bin/bash
+
+docker system prune
+/var/lib/docker/overlay2 eat disk space
+
+mv daemon.json to /etc/docker, then systemctl restart docker
 
 ===============================================================================
 apt-cache search package-name | grep speci-package-name
