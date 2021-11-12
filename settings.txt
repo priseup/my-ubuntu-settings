@@ -1,5 +1,5 @@
 ===============================================================================
-sudo apt install -y build-essential vim vim-gnome gdb git gitk cmake wget tmux fcitx ubuntu-restricted-extras vlc snap dselect gimp openssh-server sqlitebrowser
+sudo apt install -y build-essential vim vim-gnome gdb git gitk cmake wget tmux fcitx ubuntu-restricted-extras vlc snap dselect gimp openssh-server sqlitebrowser p7zip-full
 
 sudo snap install cloudcompare meshlab
 
