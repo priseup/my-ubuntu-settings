@@ -1,5 +1,5 @@
 ===============================================================================
-sudo apt install -y build-essential vim vim-gnome gdb git gitk cmake wget tmux fcitx ubuntu-restricted-extras vlc snap dselect gimp openssh-server sqlitebrowser p7zip-full libomp-dev
+sudo apt install -y build-essential vim vim-gnome gdb git gitk cmake wget tmux fcitx ubuntu-restricted-extras vlc snap dselect gimp openssh-server sqlitebrowser p7zip-full libomp-dev libceres-dev
 
 sudo snap install cloudcompare meshlab
 
@@ -83,3 +83,29 @@ vim
 ===============================================================================
 zip解压乱码
 unzip -O CP936 xxx.zip (用GBK, GB18030也可以)
+
+===============================================================================
+rosbag play --clock -r 0.5 a.bag
+rosbag record -o file_basename /map (topic)
+
+fix .bag.active to .bag
+rosbag reindex a.bag.active
+rosbag fix  a.bag.active a.bag
+
+convert bag to pcd
+rosrun pcl_ros bag_to_pcd aaa.bag /map(topic) output_dir
+
+roslauch node aaa.launch
+
+===============================================================================
+tmux ls
+tmux new -s session-name
+tmux detach == prefix key + d
+tmux attach -t session
+tmux kill-session -t session
+tmux switch -t session
+tmux rename-session -t old-name new-name
+install plugin: prefix I
+tmux source ~/.tmux.conf
+prefx + ctrl s: save session by tmux-resurrect
+prefx + ctrl r: restore session by tmux-resurrect
